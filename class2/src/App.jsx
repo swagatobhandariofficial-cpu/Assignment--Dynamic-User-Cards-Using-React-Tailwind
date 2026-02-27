@@ -4,20 +4,20 @@ import Wahroom from './components/Wahroom'
 const App = () => {
   const [gender, setGender] = useState('Male')
   function chngGender() {
-    if(gender== 'Male'){
+    if (gender == 'Male') {
       setGender('Female')
-    } else if (gender == 'Female'){
+    } else if (gender == 'Female') {
       setGender('Others')
-    } else{
+    } else {
       setGender('Male')
     }
   }
   return (
     <div className='parent'>
-      <h1>{gender}</h1>
+      <h1>Your Gender is: {gender}</h1>
       <button onClick={chngGender}>Change Gender</button>
 
-      <Wahroom user={gender}/>
+      <Wahroom user={gender} />
     </div>
   )
 }

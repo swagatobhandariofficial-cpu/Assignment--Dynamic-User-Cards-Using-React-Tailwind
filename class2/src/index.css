@@ -12,16 +12,14 @@ body {
     width: 100%;
     margin: 10px;
     background-color: black
-    
 }
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
     display: none;
 }
 
 
 button {
-    /* margin: 1rem; */
     padding: 5px 10px;
     background-color: rgb(3, 211, 211);
     border-radius: 5px;
@@ -33,17 +31,18 @@ button:active {
     scale: 0.95;
 }
 
-.parent{
+.parent {
     padding: 20px;
     height: 100vh;
     background-color: black;
 }
+
 .parent h1 {
     font-size: 40px;
-    color:white;
+    color: white;
 }
 
-.wash{
+.wash {
     border-radius: 10px;
     height: 200px;
     width: fit-content;
@@ -68,5 +67,5 @@ button:active {
 }
 
 .Others {
-    background: conic-gradient(violet, indigo, blue, green, yellow, orange,red,violet);
+    background: conic-gradient(violet, indigo, blue, green, yellow, orange, red, violet);
 }
