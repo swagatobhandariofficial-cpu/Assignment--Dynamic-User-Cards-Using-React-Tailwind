@@ -1,23 +1,18 @@
-import React, { useState } from 'react'
-import Wahroom from './components/Wahroom'
+import React from 'react'
 
 const App = () => {
-  const [gender, setGender] = useState('Male')
-  function chngGender() {
-    if (gender == 'Male') {
-      setGender('Female')
-    } else if (gender == 'Female') {
-      setGender('Others')
-    } else {
-      setGender('Male')
-    }
+  const submitHandler = (e)=>{
+    e.preventDefault()
+    console.log("Submitted")
   }
   return (
-    <div className='parent'>
-      <h1>Your Gender is: {gender}</h1>
-      <button onClick={chngGender}>Change Gender</button>
-
-      <Wahroom user={gender} />
+    <div>
+      <form onSubmit={(el)=>{
+        submitHandler(el)
+      }}>
+        <input type="text" placeholder='Enter your name' />
+        <button>Submit</button>
+      </form>
     </div>
   )
 }
