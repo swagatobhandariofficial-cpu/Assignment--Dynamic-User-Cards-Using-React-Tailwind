@@ -1,26 +1,38 @@
 import React, { useState } from 'react'
 
 const App = () => {
+  const [name, setName] = useState('')
+  const [allUsers, setAllUsers] = useState(['Swagato'])
+
   const subHand = function (e) {
     e.preventDefault()
-    console.log("Submitted");
-  }
 
-  const [name, setName] = useState('')
+    const newAllUsers = [...allUsers]
+    newAllUsers.push(name)
+
+    setAllUsers(newAllUsers)
+    setName('')
+  }
 
   return (
     <div>
-      <form onSubmit={(e) => {
-        subHand(e)
-      }} >
-        <input type="text" placeholder='Name?' 
-        value={name}
-        onChange={(e)=>{
-          setName(e.target.value)
-          
-        }} />
+
+      <form onSubmit={subHand}>
+        <input
+          type="text"
+          placeholder="Name?"
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+
         <button>Submit</button>
       </form>
+
+      {allUsers.map((user, idx) => {
+        return <h2 key={idx}>{user}</h2>
+      })}
+
     </div>
   )
 }

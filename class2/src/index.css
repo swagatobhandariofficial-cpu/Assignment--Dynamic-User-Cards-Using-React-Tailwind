@@ -13,8 +13,12 @@ body {
     margin: 10px;
     background-color: black
     
+    
 }
 
+body{
+    color: #fff;
+}
 body::-webkit-scrollbar {
     display: none;
 }
@@ -26,6 +30,7 @@ button {
     border-radius: 5px;
     font-size: 25px;
     text-decoration: bold;
+    color: black;
 }
 
 button:active {
@@ -35,6 +40,7 @@ button:active {
 form{
     background-color: #fff;
     padding: 7px;
+    color: black;
 }
 
 form input{
