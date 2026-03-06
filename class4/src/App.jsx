@@ -26,7 +26,15 @@ const App = () => {
   }
   const dltHandler = (idx) => {
     const dltuser = [...allUsers]
-    dltuser.splice(idx, 1)
+
+    const confrm = confirm('Do you really want to delete this element?')
+
+    if(confrm) {
+      dltuser.splice(idx, 1)
+    } else{
+      alert('Element not Deleted')
+    }
+    
     setAllUsers(dltuser)
     localStorage.setItem('all-users', JSON.stringify(dltuser))
 
