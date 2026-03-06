@@ -1,55 +1,125 @@
 import React, { useState } from 'react'
 
 const App = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [FName, setFName] = useState('')
+  const [LName, setLNName] = useState('')
+  const [Designation, setDesignation] = useState('')
+  const [imageURL, setimageURL] = useState('')
+  const [bio, setBio] = useState('')
   const [allUsers, setAllUsers] = useState([])
+  const submitHandler = function (e) {
 
-  const submitHand = (e) => {
     e.preventDefault()
 
-    const oldUser = [...allUsers]
-    oldUser.push({ name, email })
-
-    console.log(oldUser);
-    setAllUsers(oldUser)
-    setName('')
-    setEmail('')
-
+    setAllUsers([...allUsers, { FName, LName, Designation, imageURL, bio }])
+    setFName('')
+    setLNName('')
+    setDesignation('')
+    setimageURL('')
+    setBio('')
   }
+  const dltHandler = (idx) => {
+    const dltuser = [...allUsers]
+    dltuser.splice(idx, 1)
+    setAllUsers(dltuser)
+  }
+
+
   return (
-    <div className='bg-blue-300 p-5 flex flex-col gap-3'>
-      <div>
-        <form className='border-2-black-100 p-1.5 flex gap-2 text-black' onSubmit={(e) => {
-          submitHand(e)
-        }}>
-          <input className='p-2 outline outline-offset-2 rounded' type="text"
-            placeholder='Enter your name'
-            required
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value)
-            }} />
+    <div className='min-h-screen bg-black text-white'>
+      <form onSubmit={(e) => {
+        submitHandler(e)
+      }} className='p-5 flex flex-wrap justify-center items-center'>
+        <input
+          value={FName}
+          onChange={(e) => {
+            setFName(e.target.value)
+          }}
+          className='py-4 px-5 lg:w-[45%] font-semibold border-2 m-2 rounded-xl'
+          type="text"
+          placeholder='Enter your first name'
+          required
+        />
+        <input
+          value={LName}
+          onChange={(e) => {
+            setLNName(e.target.value)
+          }}
+          className='py-4 px-5 lg:w-[45%] font-semibold border-2 m-2 rounded-xl'
+          type="text"
+          placeholder='Enter your last name'
+          required
+        />
+        <input
+          value={Designation}
+          onChange={(e) => {
+            setDesignation(e.target.value)
+          }}
+          className='py-4 px-5 lg:w-[45%] font-semibold border-2 m-2 rounded-xl'
+          type="text"
+          placeholder='Enter your Designation'
+          required
+        />
+        <input
+          value={imageURL}
+          onChange={(e) => {
+            setimageURL(e.target.value)
+          }}
+          className='py-4 px-5 lg:w-[45%] font-semibold border-2 m-2 rounded-xl'
+          type="text"
+          placeholder='Enter imageURL'
+          required
+        />
+        <textarea
+          value={bio}
+          onChange={(e) => {
+            setBio(e.target.value)
+          }}
+          className='py-4 px-5 w-[59%] font-semibold border-2 m-2 rounded-xl'
+          type="text"
+          placeholder="Enter Bio"
+          required ></textarea>
 
-          <input className='p-2 outline outline-offset-2 rounded' type="email"
-            placeholder='Enter your Email'
-            required
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value)
-            }} />
-          <button className='px-3 py-2.5 bg-emerald-500 rounded-2xl active:scale-95 transition'>Submit</button>
-        </form>
-      </div>
+        <button
+          className='px-3 py-3 bg-indigo-600 rounded-xl w-[40%] mt-4 active:scale-95'>
+          Submit
+        </button>
+      </form>
 
-      <div className='bg-cyan-600 px-4 py-8 rounded-xl text-blue-50'>
-        {allUsers.map(function (elm, idx) {
-          return <div>
-            <h4 key={idx}>Name is: {elm.name}</h4>
-            <p key={idx}>Email is: {elm.email}</p>
-            <br />
-          </div>
+
+
+      <div className='p-5 flex flex-wrap gap-3'>
+
+        {allUsers.map((elm, idx) => {
+          return (
+            <div key={idx} className="w-[48vw] lg:w-[20vw] md:w-[35vw] sm:w-[35vw] rounded-xl text-center flex flex-col items-center justify-center px-8 py-6 bg-white text-black">
+
+      <img
+        className="h-24 w-24 rounded-full object-cover"
+        src={elm.imageURL}
+        alt=""
+      />
+
+      <h1 className='text-xl font-semibold'>
+        {elm.FName} {elm.LName}
+      </h1>
+
+      <h5 className='text-blue-500 font-semibold text-base mt-0.5 mb-2'>
+        {elm.Designation}
+      </h5>
+
+      <p className='text-sm font-medium leading-tight opacity-80'>
+        {elm.bio}
+      </p>
+
+      <button
+        onClick={() => dltHandler(idx)}
+        className='my-2.5 px-4 py-2 rounded cursor-pointer active:scale-95 bg-red-500 text-white'>Remove</button>
+
+    </div>
+          )
         })}
+
       </div>
 
     </div>
