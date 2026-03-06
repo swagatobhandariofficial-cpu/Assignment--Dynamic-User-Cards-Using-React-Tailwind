@@ -6,12 +6,18 @@ const App = () => {
   const [Designation, setDesignation] = useState('')
   const [imageURL, setimageURL] = useState('')
   const [bio, setBio] = useState('')
-  const [allUsers, setAllUsers] = useState([])
+
+  const localData = JSON.parse(localStorage.getItem('all-users')) || []
+  const [allUsers, setAllUsers] = useState(localData)
   const submitHandler = function (e) {
 
     e.preventDefault()
 
-    setAllUsers([...allUsers, { FName, LName, Designation, imageURL, bio }])
+    const oldUsers = [...allUsers]
+    oldUsers.push({ FName, LName, Designation, imageURL, bio })
+
+    setAllUsers(oldUsers)
+    localStorage.setItem('all-users', JSON.stringify(oldUsers))
     setFName('')
     setLNName('')
     setDesignation('')
@@ -22,6 +28,8 @@ const App = () => {
     const dltuser = [...allUsers]
     dltuser.splice(idx, 1)
     setAllUsers(dltuser)
+    localStorage.setItem('all-users', JSON.stringify(dltuser))
+
   }
 
 
@@ -94,30 +102,30 @@ const App = () => {
           return (
             <div key={idx} className="w-[48vw] lg:w-[20vw] md:w-[35vw] sm:w-[35vw] rounded-xl text-center flex flex-col items-center justify-center px-8 py-6 bg-white text-black">
 
-      <img
-        className="h-24 w-24 rounded-full object-cover"
-        src={elm.imageURL}
-        alt=""
-      />
+              <img
+                className="h-24 w-24 rounded-full object-cover"
+                src={elm.imageURL}
+                alt=""
+              />
 
-      <h1 className='text-xl font-semibold'>
-        {elm.FName} {elm.LName}
-      </h1>
+              <h1 className='text-xl font-semibold'>
+                {elm.FName} {elm.LName}
+              </h1>
 
-      <h5 className='text-blue-500 font-semibold text-base mt-0.5 mb-2'>
-        {elm.Designation}
-      </h5>
+              <h5 className='text-blue-500 font-semibold text-base mt-0.5 mb-2'>
+                {elm.Designation}
+              </h5>
 
-      <p className='text-sm font-medium leading-tight opacity-80'>
-        {elm.bio}
-      </p>
+              <p className='text-sm font-medium leading-tight opacity-80'>
+                {elm.bio}
+              </p>
 
-      <button
-        onClick={() => dltHandler(idx)}
-        className='my-2.5 px-4 py-2 rounded cursor-pointer active:scale-95 bg-red-500 text-white'>Remove</button>
+              <button
+                onClick={() => dltHandler(idx)}
+                className='my-2.5 px-4 py-2 rounded cursor-pointer active:scale-95 bg-red-500 text-white'>Remove</button>
 
 
-    </div>
+            </div>
           )
         })}
 
