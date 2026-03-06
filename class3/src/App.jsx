@@ -116,6 +116,7 @@ const App = () => {
         onClick={() => dltHandler(idx)}
         className='my-2.5 px-4 py-2 rounded cursor-pointer active:scale-95 bg-red-500 text-white'>Remove</button>
 
+
     </div>
           )
         })}
